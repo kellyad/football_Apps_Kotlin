@@ -15,7 +15,7 @@ This Repository database from League API .
  * [x] Adding reminder for upcoming matches to your calendar.
 
 <img src="https://github.com/kellyad/football_Apps_Kotlin/blob/master/screenshot/Match_List.png"
-width="256"&nbsp;&nbsp;&nbsp;
+width="256">&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/kellyad/football_Apps_Kotlin/blob/master/screenshot/Matches_Detail.png"
 width="256">&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/kellyad/football_Apps_Kotlin/blob/master/screenshot/Match_List.png"
@@ -30,7 +30,7 @@ width="256">&nbsp;&nbsp;&nbsp;
  * [x] Team detail as well as player information detail.
 
 <img src="https://github.com/kellyad/football_Apps_Kotlin/blob/master/screenshot/Team_List.png"
-width="256"&nbsp;&nbsp;&nbsp;
+width="256">&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/kellyad/football_Apps_Kotlin/blob/master/screenshot/Team_Detail.png"
 width="256">&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/kellyad/football_Apps_Kotlin/blob/master/screenshot/Player_Detail.png"
@@ -43,7 +43,7 @@ width="256">&nbsp;&nbsp;&nbsp;
  * [x] Insert and delete selected Teams to Database
 
 <img src="https://github.com/kellyad/football_Apps_Kotlin/blob/master/screenshot/Favorite.png"
-width="256"&nbsp;&nbsp;&nbsp;
+width="256">&nbsp;&nbsp;&nbsp;
 
 4. App Test
  * [x] Unit Test
