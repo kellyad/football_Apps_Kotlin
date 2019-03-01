@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="team_badge" type="id" />
+    <item name="team_name" type="id" />
+    <item name="region_name" type="id" />
+    <item name="region_score" type="id" />
+    <item name="versus_name" type="id" />
+    <item name="versus_region_name" type="id" />
+    <item name="versus_region_score" type="id" />
+    <item name="event_date" type="id" />
+    <item name="last_match" type="id" />
+    <item name="upcoming_match" type="id" />
+    <item name="recycler" type="id" />
+    <item name="swipeRefresh" type="id" />
+    <item name="teams" type="id" />
+    <item name="changeLayout" type="id" />
+    <item name="teamdetailtablayout" type="id" />
+    <item name="viewpager" type="id" />
+    <item name="spinner" type="id" />
+    <item name="recyclerView" type="id" />
+    <item name="imageView" type="id" />
+    <item name="textView" type="id" />
+    <item name="team_pic" type="id" />
+    <item name="team_year" type="id" />
+    <item name="team_stadium" type="id" />
+    <item name="player_pic" type="id" />
+    <item name="player_name" type="id" />
+    <item name="player_position" type="id" />
+    <item name="player_height" type="id" />
+    <item name="height" type="id" />
+    <item name="width" type="id" />
+    <item name="player_weight" type="id" />
+    <item name="player_description" type="id" />
+</resources>
