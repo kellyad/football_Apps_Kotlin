@@ -1,7 +1,7 @@
 
 This Repository is my learning progress at Dicoding online course platform at class : Kotlin Android Developer Expert (KADE)
 https://www.dicoding.com/academies/55 . I've enrolled in this class as a part of Google Developers Kejar Batch 2 Indonesia.
-This Repository database from League API .
+This Repository database was based on real League API https://www.thesportsdb.com.
 
 ### App Features
 
