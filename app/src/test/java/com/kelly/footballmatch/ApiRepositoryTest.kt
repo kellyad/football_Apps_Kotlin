@@ -1,5 +1,7 @@
 package com.kelly.footballmatch
 
+import com.kelly.footballmatch.data.network.repository.ApiRepository
+import com.kelly.footballmatch.data.network.service.TheSportsDBApi
 import junit.framework.Assert.assertEquals
 import org.junit.Test
 

@@ -1,14 +1,14 @@
 package com.kelly.footballmatch.list.event
 
-import com.kelly.footballmatch.ApiRepository
-import com.kelly.footballmatch.TheSportsDBApi
-import com.kelly.footballmatch.list.Event.EventPresenter
-import com.kelly.footballmatch.list.Event.EventView
-import com.kelly.footballmatch.model.Event
-import com.kelly.footballmatch.model.FootballMatch
-import com.kelly.footballmatch.model.repository.LocalRepositoryApi
-import com.kelly.footballmatch.util.TestContextProvider
+import com.kelly.footballmatch.data.network.repository.ApiRepository
+import com.kelly.footballmatch.data.network.service.TheSportsDBApi
+import com.kelly.footballmatch.presentation.eventpage.homepage.presenter.EventPresenter
+import com.kelly.footballmatch.data.responses.events.Event
+import com.kelly.footballmatch.data.responses.matches.FootballMatch
+import com.kelly.footballmatch.data.network.service.LocalRepositoryApi
+import com.kelly.footballmatch.external.util.TestContextProvider
 import com.google.gson.Gson
+import com.kelly.footballmatch.presentation.eventpage.homepage.contract.homepageContract
 import org.junit.Before
 import org.junit.Test
 
@@ -18,7 +18,7 @@ import org.mockito.MockitoAnnotations
 
 class EventPresenterTest {
 
-    @Mock private lateinit var view: EventView
+    @Mock private lateinit var view: homepageContract.EventView
     @Mock private lateinit var localRepositoryImpl: LocalRepositoryApi
     @Mock private lateinit var apiRepository: ApiRepository
     @Mock private lateinit var gson: Gson

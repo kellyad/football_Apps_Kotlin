@@ -5,13 +5,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".FootBallClub"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -20,14 +21,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".detail.DetailActivity"
-            android:parentActivityName=".view.MainActivity"/>
+        <activity android:name=".presentation.eventpage.detailpage.view.DetailActivity"
+            android:parentActivityName=".presentation.MainActivity"/>
 
-        <activity android:name=".list.team.detail.TeamDetailActivity"/>
+        <activity android:name=".presentation.teampage.detailpage.view.TeamDetailActivity"/>
 
-        <activity android:name=".list.team.players.detail.PlayerDetailActivity"/>
+        <activity android:name=".presentation.playerpage.detailpage.PlayerDetailActivity"/>
 
-        <activity android:name=".search.match.FootBallMatchSearchActivity" />
+        <activity android:name=".presentation.eventpage.searchpage.view.FootBallMatchSearchActivity" />
     </application>
 
 </manifest>
