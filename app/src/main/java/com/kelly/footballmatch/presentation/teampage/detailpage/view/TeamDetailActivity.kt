@@ -28,10 +28,13 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.support.annotation.RequiresApi
+import com.kelly.footballmatch.data.network.MyDatabaseOpenHelper
+import dagger.android.AndroidInjection
 import org.jetbrains.anko.custom.async
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
+import javax.inject.Inject
 
 
 class TeamDetailActivity: AppCompatActivity() {
@@ -52,6 +55,9 @@ class TeamDetailActivity: AppCompatActivity() {
     private lateinit var teamFanArt        : LinearLayout
 
     private lateinit var localRepo          : LocalRepositoryApi
+
+    @Inject
+    lateinit var dbHelper: MyDatabaseOpenHelper
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.favorite_menu, menu)
@@ -87,7 +93,9 @@ class TeamDetailActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-         localRepo = LocalRepositoryApi(applicationContext)
+//         localRepo = LocalRepositoryApi(applicationContext)
+        AndroidInjection.inject(this)
+        localRepo = LocalRepositoryApi(dbHelper)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         coordinatorLayout {

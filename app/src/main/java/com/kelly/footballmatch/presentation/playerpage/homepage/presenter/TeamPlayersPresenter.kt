@@ -5,10 +5,11 @@ import com.kelly.footballmatch.presentation.playerpage.homepage.contract.TeamPla
 import com.kelly.footballmatch.presentation.playerpage.homepage.usecase.playerUseCase
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
+import javax.inject.Inject
 
-class TeamPlayersPresenter(val context: Context, val mUseCase: playerUseCase): TeamPlayersView.Presenter  {
+class TeamPlayersPresenter @Inject constructor(var view: TeamPlayersView.View, val mUseCase: playerUseCase): TeamPlayersView.Presenter  {
 
-    private var view: TeamPlayersView.View? = null
+//    private var view: TeamPlayersView.View? = null
 
 
     override fun onAttachedView(activity: TeamPlayersView.View) {

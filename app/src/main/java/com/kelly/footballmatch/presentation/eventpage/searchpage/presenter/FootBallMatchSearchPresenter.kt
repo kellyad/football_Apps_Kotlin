@@ -7,15 +7,16 @@ import com.kelly.footballmatch.presentation.eventpage.searchpage.usecase.searchm
 import kotlinx.coroutines.experimental.CoroutineStart
 import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.coroutines.experimental.bg
+import javax.inject.Inject
 
-class FootBallMatchSearchPresenter( val context: Context, val mUseCase : searchmatchUseCase) : FootBallMatchSearchView.Presenter  {
+class FootBallMatchSearchPresenter @Inject constructor(var view: FootBallMatchSearchView.View, val mUseCase : searchmatchUseCase ) : FootBallMatchSearchView.Presenter  {
 
-    private var view: FootBallMatchSearchView.View? = null
+//    private var view: FootBallMatchSearchView.View? = null
 
-    override fun onAttachedView(activity: FootBallMatchSearchView.View) {
-        view = activity
-        view?.initData()
-    }
+//    override fun onAttachedView(activity: FootBallMatchSearchView.View) {
+//        view = activity
+//        view?.initData()
+//    }
 
     override fun getFootBallMatchesSearch( eventName: String ) {
         view?.showLoading()

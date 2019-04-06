@@ -13,7 +13,7 @@ interface FootBallMatchSearchView {
     }
 
     interface Presenter{
-        fun onAttachedView(activity: FootBallMatchSearchView.View)
+//        fun onAttachedView(activity: FootBallMatchSearchView.View)
         fun getFootBallMatchesSearch( eventName: String )
     }
 }

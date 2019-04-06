@@ -1,6 +1,7 @@
 package com.kelly.footballmatch.presentation.eventpage.detailpage.presenter
 
 import android.content.Context
+import com.kelly.footballmatch.data.network.MyDatabaseOpenHelper
 import com.kelly.footballmatch.data.responses.events.Event
 import com.kelly.footballmatch.data.network.service.LocalRepositoryApi
 import com.kelly.footballmatch.external.util.CoroutineContextProvider
@@ -8,20 +9,22 @@ import com.kelly.footballmatch.presentation.eventpage.detailpage.contract.Detail
 import com.kelly.footballmatch.presentation.eventpage.detailpage.usecase.detailpageUseCase
 import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.coroutines.experimental.bg
+import javax.inject.Inject
 
-class DetailPresenter(val context : Context, val mUseCase : detailpageUseCase)
+class DetailPresenter
+@Inject constructor(val view : DetailView.View, val mUseCase : detailpageUseCase, val dbHelper: MyDatabaseOpenHelper)
     : DetailView.Presenter {
-    private var view: DetailView.View? = null
-    private var localRepositoryImpl = LocalRepositoryApi(context)
+    //private var view: DetailView.View? = null
+    private var localRepositoryImpl = LocalRepositoryApi(dbHelper)
 
     fun showDataTeam(event: Event?){
         view?.showDataTeam(event)
     }
 
-    fun onAttachedView(activity: DetailView.View) {
-        view = activity
-        view?.initData()
-    }
+//    fun onAttachedView(activity: DetailView.View) {
+//        view = activity
+//        view?.initData()
+//    }
 
     fun goToDetailActivity(teamId: String?){
         async(context = CoroutineContextProvider().main) {

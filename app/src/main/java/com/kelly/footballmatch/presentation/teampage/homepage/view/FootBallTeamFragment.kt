@@ -19,6 +19,7 @@ import com.kelly.footballmatch.external.constant.Types
 import com.kelly.footballmatch.external.adapter.TeamAdapter
 import com.kelly.footballmatch.presentation.teampage.homepage.contract.TeamView
 import com.kelly.footballmatch.presentation.teampage.homepage.presenter.TeamPresenter
+import dagger.android.support.AndroidSupportInjection
 
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
@@ -26,12 +27,15 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 import org.koin.android.ext.android.inject
+import javax.inject.Inject
 
 class FootBallTeamFragment : Fragment(), AnkoComponent<Context>, TeamView.View {
     private var teams           : MutableList<Team> = mutableListOf()
     private var teamNameList    : MutableList<String> = mutableListOf()
 
-    val presenter  : TeamPresenter by inject ()
+    @Inject
+    lateinit var presenter  : TeamPresenter
+
     private lateinit var adapter    : TeamAdapter
 
     private lateinit var spinnerLayout  : LinearLayout
@@ -57,7 +61,8 @@ class FootBallTeamFragment : Fragment(), AnkoComponent<Context>, TeamView.View {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        presenter.onAttachedView(this)
+//        presenter.onAttachedView(this)
+        initData()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -126,6 +131,7 @@ class FootBallTeamFragment : Fragment(), AnkoComponent<Context>, TeamView.View {
     }
 
     override fun initData() {
+        AndroidSupportInjection.inject(this)
         type = arguments?.get(TYPE_TEAMS) as Types
 
         when (type) {

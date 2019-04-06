@@ -11,6 +11,7 @@
     <item name="recycler" type="id" />
     <item name="swipeRefresh" type="id" />
     <item name="teams" type="id" />
+    <item name="favorites" type="id" />
     <item name="changeLayout" type="id" />
     <item name="teamdetailtablayout" type="id" />
     <item name="viewpager" type="id" />

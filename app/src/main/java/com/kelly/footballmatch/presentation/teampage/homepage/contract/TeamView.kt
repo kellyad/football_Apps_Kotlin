@@ -15,7 +15,7 @@ interface TeamView {
         fun showFavoriteTeamList(data: List<Team>)
     }
     interface Presenter{
-        fun onAttachedView(activity: TeamView.View)
+//        fun onAttachedView(activity: TeamView.View)
         fun getAllLeague()
         fun getAllTeam(leagueName: String )
         fun getSearchedTeam(teamName: String )

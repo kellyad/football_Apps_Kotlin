@@ -1,6 +1,8 @@
 package com.kelly.footballmatch.presentation.eventpage.homepage.presenter
 
 import android.content.Context
+import android.util.Log
+import com.kelly.footballmatch.data.network.MyDatabaseOpenHelper
 import com.kelly.footballmatch.data.responses.events.Event
 import com.kelly.footballmatch.data.network.service.LocalRepositoryApi
 import com.kelly.footballmatch.external.util.CoroutineContextProvider
@@ -9,21 +11,22 @@ import com.kelly.footballmatch.presentation.eventpage.homepage.contract.homepage
 import com.kelly.footballmatch.presentation.eventpage.homepage.usecase.homepageUseCase
 import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.coroutines.experimental.bg
+import javax.inject.Inject
 
-class EventPresenter( val context:Context, val mUsecase : homepageUseCase ) : homepageContract.Presenter {
+class EventPresenter
+@Inject constructor( val view: homepageContract.EventView, val mUsecase : homepageUseCase, val dbHelper: MyDatabaseOpenHelper) : homepageContract.Presenter {
 
     private val contextMain: CoroutineContextProvider = CoroutineContextProvider()
-    private val localRepositoryImpl = LocalRepositoryApi(context)
-    private var view: homepageContract.EventView? = null
+    private val localRepositoryImpl = LocalRepositoryApi(dbHelper)
+
     lateinit var event  : Event
 
     var menu = 1
 
-    override fun onAttachedView(activity: homepageContract.EventView) {
-        view = activity
-        view?.initData()
-    }
-
+//    override fun onAttachedView(activity: homepageContract.EventView) {
+//        view = activity
+//        view?.initData()
+//    }
 
     override fun getLastMatch(leagueId: String?,leagueName: String?) {
         menu = 1
@@ -51,6 +54,7 @@ class EventPresenter( val context:Context, val mUsecase : homepageUseCase ) : ho
             }
     }
     override fun getNextMatch(leagueId: String?,leagueName:String?) {
+
         menu = 2
         view?.showLoading()
         async(contextMain.main) {
@@ -87,6 +91,7 @@ class EventPresenter( val context:Context, val mUsecase : homepageUseCase ) : ho
 
     }
     override fun getAllLeague(){
+        Log.d("cek","amasuk")
         view?.showLoading()
         async(contextMain.main) {
             val data = bg {

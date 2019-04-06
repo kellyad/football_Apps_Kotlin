@@ -16,18 +16,22 @@ import com.kelly.footballmatch.R
 import com.kelly.footballmatch.presentation.eventpage.detailpage.view.DetailActivity
 import com.kelly.footballmatch.external.adapter.EventAdapter
 import com.kelly.footballmatch.data.responses.events.Event
+import com.kelly.footballmatch.presentation.eventpage.homepage.presenter.EventPresenter
 
 import com.kelly.footballmatch.presentation.eventpage.searchpage.contract.FootBallMatchSearchView
 import com.kelly.footballmatch.presentation.eventpage.searchpage.presenter.FootBallMatchSearchPresenter
+import dagger.android.AndroidInjection
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 import org.koin.android.ext.android.inject
+import javax.inject.Inject
 
 class FootBallMatchSearchActivity: AppCompatActivity(), FootBallMatchSearchView.View {
 
-    val presenter      : FootBallMatchSearchPresenter by inject ()
+    @Inject
+    lateinit var presenter: FootBallMatchSearchPresenter
 
     private var events         : MutableList<Event> = mutableListOf()
     private lateinit var listAdapter    : EventAdapter
@@ -81,7 +85,7 @@ class FootBallMatchSearchActivity: AppCompatActivity(), FootBallMatchSearchView.
                 }
 
         }
-        presenter.onAttachedView(this)
+//        presenter.onAttachedView(this)
 
     }
 
@@ -101,7 +105,7 @@ class FootBallMatchSearchActivity: AppCompatActivity(), FootBallMatchSearchView.
         })
     }
     override fun initData(){
-
+        AndroidInjection.inject(this)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         events = mutableListOf()

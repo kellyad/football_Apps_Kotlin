@@ -21,6 +21,8 @@ import com.kelly.footballmatch.data.responses.events.Event
 import com.kelly.footballmatch.data.responses.leagues.League
 import com.kelly.footballmatch.external.constant.Types
 import com.kelly.footballmatch.presentation.eventpage.homepage.contract.homepageContract
+import dagger.android.AndroidInjection
+import dagger.android.support.AndroidSupportInjection
 
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
@@ -28,6 +30,7 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 import org.koin.android.ext.android.inject
+import javax.inject.Inject
 
 class EventFragment : Fragment(), AnkoComponent<Context>, homepageContract.EventView {
 
@@ -46,7 +49,8 @@ class EventFragment : Fragment(), AnkoComponent<Context>, homepageContract.Event
     private lateinit var Type       : Types
     private lateinit var leagueName   : String
 
-    val presenter  : EventPresenter by inject()
+    @Inject
+    lateinit var presenter: EventPresenter
 
     companion object {
 
@@ -62,6 +66,7 @@ class EventFragment : Fragment(), AnkoComponent<Context>, homepageContract.Event
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         return createView(AnkoContext.create(ctx))
     }
 
@@ -114,10 +119,12 @@ class EventFragment : Fragment(), AnkoComponent<Context>, homepageContract.Event
     override fun onActivityCreated(savedInstanceState: Bundle?) {
 
         super.onActivityCreated(savedInstanceState)
-        presenter.onAttachedView(this)
+//        presenter.onAttachedView(this)
+        initData()
     }
 
     override fun initData(){
+        AndroidSupportInjection.inject(this)
         Type = arguments?.get(TYPE_MATCHES) as Types
         presenter.getAllLeague()
 

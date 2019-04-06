@@ -6,8 +6,9 @@ import com.kelly.footballmatch.data.network.service.TheSportsDBApi
 import com.kelly.footballmatch.data.responses.leagues.Leagues
 import com.kelly.footballmatch.data.responses.matches.FootballMatch
 import com.kelly.footballmatch.data.responses.teams.TeamResponse
+import javax.inject.Inject
 
-class homepageInteractor () : homepageUseCase {
+class homepageInteractor @Inject constructor() : homepageUseCase {
 
     override fun getLastMatch(leagueId : String?) : FootballMatch{
         return Gson().fromJson(ApiRepository()

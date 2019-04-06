@@ -21,16 +21,21 @@ import com.kelly.footballmatch.presentation.eventpage.detailpage.presenter.Detai
 import com.kelly.footballmatch.presentation.eventpage.detailpage.contract.DetailView
 import com.kelly.footballmatch.external.util.DateTime
 import com.squareup.picasso.Picasso
+import dagger.android.AndroidInjection
+import dagger.android.support.AndroidSupportInjection
 
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
+import javax.inject.Inject
 
 
 class DetailActivity : AppCompatActivity(), DetailView.View {
-    val presenter  : DetailPresenter by inject ()
+    //val presenter  : DetailPresenter by inject ()
 
+    @Inject
+    lateinit var presenter: DetailPresenter
     private lateinit var event  : Event
     private var menuItem        : Menu? = null
     private var isFavorite      : Boolean = false
@@ -690,10 +695,12 @@ class DetailActivity : AppCompatActivity(), DetailView.View {
                 }
             }
         }
-        presenter.onAttachedView(this)
+//        presenter.onAttachedView(this)
+        initData()
 
     }
     override fun initData(){
+        AndroidInjection.inject(this)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         isEvent = intent.hasExtra("event")

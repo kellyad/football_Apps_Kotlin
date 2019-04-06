@@ -5,8 +5,9 @@ import com.kelly.footballmatch.data.network.repository.ApiRepository
 import com.kelly.footballmatch.data.network.service.TheSportsDBApi
 import com.kelly.footballmatch.data.responses.leagues.Leagues
 import com.kelly.footballmatch.data.responses.teams.TeamResponse
+import javax.inject.Inject
 
-class hometeamInteractor () : hometeamUseCase {
+class hometeamInteractor @Inject constructor() : hometeamUseCase {
     override fun getAllTeam(leagueName: String): TeamResponse {
         return Gson().fromJson(ApiRepository()
                 .doRequest(TheSportsDBApi.getAllTeam(leagueName)),

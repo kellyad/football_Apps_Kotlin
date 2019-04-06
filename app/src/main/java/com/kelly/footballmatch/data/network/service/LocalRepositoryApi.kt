@@ -1,20 +1,21 @@
 package com.kelly.footballmatch.data.network.service
 
 import android.content.Context
+import com.kelly.footballmatch.data.network.MyDatabaseOpenHelper
 import com.kelly.footballmatch.data.network.repository.LocalRepository
 import com.kelly.footballmatch.data.responses.events.Event
 import com.kelly.footballmatch.data.responses.teams.Team
-import com.kelly.footballmatch.data.network.database
+//import com.kelly.footballmatch.data.network.database
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 import org.jetbrains.anko.db.delete
 
-class LocalRepositoryApi(private val context: Context) : LocalRepository {
+class LocalRepositoryApi(private val context: MyDatabaseOpenHelper) : LocalRepository {
 
     override fun checkFavorite(eventId: String?): List<Event> {
 
-        return context.database.use {
+        return context.use {
             val result = select(Event.TABLE_FAVORITES)
                     .whereArgs("(ID_EVENT = {id})",
                             "id" to eventId.toString())
@@ -25,14 +26,14 @@ class LocalRepositoryApi(private val context: Context) : LocalRepository {
 
 
     override fun deleteData(eventId: String?) {
-        context.database.use{
+        context.use{
             delete(Event.TABLE_FAVORITES, "(ID_EVENT = {id})",
                     "id" to eventId.toString())
         }
     }
 
     override fun insertData(data: Event) {
-        context.database.use {
+        context.use {
             insert(Event.TABLE_FAVORITES,
                     Event.ID_EVENT to data.idEvent,
                     Event.DATE to data.dateEvent,
@@ -77,7 +78,7 @@ class LocalRepositoryApi(private val context: Context) : LocalRepository {
 
     override fun getTeamFromDb(): MutableList<Team> {
          val favoriteTeamList :MutableList<Team> = mutableListOf()
-        context.database.use {
+        context.use {
             val resultTeam  = select(Team.TABLE_TEAM_FAVORITES)
             val favoriteTeam = resultTeam.parseList(classParser<Team>())
             favoriteTeamList.addAll(favoriteTeam)
@@ -87,7 +88,7 @@ class LocalRepositoryApi(private val context: Context) : LocalRepository {
 
     override fun checkFavoriteTeam(teamId: String?): List<Team> {
 
-        return context.database.use {
+        return context.use {
             val resultTeam = select(Team.TABLE_TEAM_FAVORITES)
                     .whereArgs("(IDTEAM = {id})",
                             "id" to teamId.toString())
@@ -98,14 +99,14 @@ class LocalRepositoryApi(private val context: Context) : LocalRepository {
 
 
     override fun deleteFavoriteTeamData(teamId: String?) {
-        context.database.use{
+        context.use{
             delete(Team.TABLE_TEAM_FAVORITES, "(IDTEAM = {id})",
                     "id" to teamId.toString())
         }
     }
 
     override fun insertFavoriteTeamData(data: Team) {
-        context.database.use {
+        context.use {
             insert( Team.TABLE_TEAM_FAVORITES,
 
             Team.IDTEAM to data.idTeam,
@@ -131,7 +132,7 @@ class LocalRepositoryApi(private val context: Context) : LocalRepository {
 
     override fun getMatchFromDb(): MutableList<Event> {
         val favoriteList :MutableList<Event> = mutableListOf()
-        context.database.use {
+        context.use {
             val result = select(Event.TABLE_FAVORITES)
             val favorite = result.parseList(classParser<Event>())
             favoriteList.addAll(favorite)

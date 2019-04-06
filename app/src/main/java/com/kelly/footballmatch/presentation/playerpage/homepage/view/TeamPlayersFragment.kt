@@ -20,14 +20,19 @@ import com.kelly.footballmatch.presentation.playerpage.homepage.presenter.TeamPl
 import com.kelly.footballmatch.presentation.playerpage.homepage.contract.TeamPlayersView
 import com.kelly.footballmatch.presentation.playerpage.detailpage.PlayerDetailActivity
 import com.kelly.footballmatch.data.responses.players.Player
+import dagger.android.support.AndroidSupportInjection
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 import org.koin.android.ext.android.inject
+import javax.inject.Inject
 
 class TeamPlayersFragment : Fragment(), AnkoComponent<Context>, TeamPlayersView.View {
+    @Inject
+    lateinit var presenter      : TeamPlayersPresenter
+
     private var players             : MutableList<Player> = mutableListOf()
 
     private lateinit var adapter    : PlayerThumbAdapter
@@ -42,7 +47,6 @@ class TeamPlayersFragment : Fragment(), AnkoComponent<Context>, TeamPlayersView.
     private lateinit var thumbImageView : ImageView
 
 
-    val presenter      : TeamPlayersPresenter by inject ()
 
     companion object {
 
@@ -58,7 +62,8 @@ class TeamPlayersFragment : Fragment(), AnkoComponent<Context>, TeamPlayersView.
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        presenter.onAttachedView(this)
+//        presenter.onAttachedView(this)
+        initData()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -137,6 +142,7 @@ class TeamPlayersFragment : Fragment(), AnkoComponent<Context>, TeamPlayersView.
     }
 
     override fun initData() {
+        AndroidSupportInjection.inject(this)
         teamTitleText = arguments?.get("TeamTitle") as String
         presenter.getAllPlayer(teamTitleText)
         setupAdapter()

@@ -4,8 +4,9 @@ import com.google.gson.Gson
 import com.kelly.footballmatch.data.network.repository.ApiRepository
 import com.kelly.footballmatch.data.network.service.TheSportsDBApi
 import com.kelly.footballmatch.data.responses.players.TeamPlayers
+import javax.inject.Inject
 
-class playerInteractor(): playerUseCase {
+class playerInteractor @Inject constructor(): playerUseCase {
     override fun getAllPlayers(teamName: String): TeamPlayers {
         return Gson().fromJson(ApiRepository()
                 .doRequest(TheSportsDBApi.getAllPlayer(teamName)),

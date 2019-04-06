@@ -5,8 +5,9 @@ import com.kelly.footballmatch.data.network.repository.ApiRepository
 import com.kelly.footballmatch.data.network.service.TheSportsDBApi
 import com.kelly.footballmatch.data.responses.matches.FootballMatchSearch
 import com.kelly.footballmatch.data.responses.teams.TeamResponse
+import javax.inject.Inject
 
-class searchmatchInteractor () : searchmatchUseCase  {
+class searchmatchInteractor @Inject constructor() : searchmatchUseCase  {
     override fun getFootBallMatchesSearch(eventName: String): FootballMatchSearch {
         return Gson().fromJson(ApiRepository()
                 .doRequest(TheSportsDBApi.getFootBallMatchesSearch(eventName)),

@@ -6,8 +6,9 @@ import android.database.sqlite.SQLiteDatabase
 import com.kelly.footballmatch.data.responses.events.Event
 import com.kelly.footballmatch.data.responses.teams.Team
 import org.jetbrains.anko.db.*
+import javax.inject.Inject
 
-class MyDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Event.db", null, 1) {
+class MyDatabaseOpenHelper @Inject constructor(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Event.db", null, 1) {
 
     companion object {
         private var instance: MyDatabaseOpenHelper? = null
@@ -91,5 +92,5 @@ class MyDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Event.d
     }
 }
 // Access property for Context
-val Context.database: MyDatabaseOpenHelper
-    get() = MyDatabaseOpenHelper.getInstance(applicationContext)
+//val Context.database: MyDatabaseOpenHelper
+//    get() = MyDatabaseOpenHelper.getInstance(applicationContext)

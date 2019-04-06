@@ -14,7 +14,7 @@ class homepageContract {
         fun showAllLeague(data : List<League>)
     }
     interface Presenter {
-        fun onAttachedView(activity: EventView)
+//        fun onAttachedView(activity: EventView)
         fun getLastMatch(leagueId: String?, leagueName: String?)
         fun getNextMatch(leagueId: String?, leagueName: String?)
         fun getFavoriteMatch()
